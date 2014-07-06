@@ -1,0 +1,19 @@
+# ls aliases
+LS_OPTS='--color=auto --size --human-readable'
+alias ls="ls ${LS_OPTS}"
+alias la="ls ${LS_OPTS} -A"
+alias ll="ls ${LS_OPTS} -l"
+alias l="ls ${LS_OPTS} -Al"
+unset LS_OPTS
+
+# Colorful grep
+alias grep='grep --color=auto --binary-files=without-match --devices=skip'
+
+# Don't destroy compressed files' originals
+alias bzip2='bzip2 --keep'
+alias xz='xz --keep'
+alias lzma='lzma --keep'
+
+alias vimcommander="vim -c ':cal VimCommanderToggle()'"
+
+alias psg='ps aux | grep'

@@ -1,0 +1,32 @@
+# path
+in_group() {
+    if ( groups | egrep -q "(^| )$1( |$)" ); then
+        return 0
+    else
+        return 1
+    fi
+}
+
+prepend_path() {
+    if [ -d "$1" ] && [ -r "$1" ] && [ -x "$1" ] &&
+       ( echo "${PATH}" | egrep -qv "(^|:)$1(:|$)" );
+    then
+        PATH="$1:${PATH}"
+    fi
+}
+
+if ( in_group games ); then
+    prepend_path /usr/games/bin
+    prepend_path /usr/local/games/bin
+fi
+
+if ( in_group wheel ); then
+    prepend_path /sbin
+    prepend_path /usr/sbin
+    prepend_path /usr/local/sbin
+fi
+
+prepend_path "${HOME}/.gem/ruby/2.0.0/bin"
+prepend_path "${HOME}/vagrant/bin"
+prepend_path "${HOME}/bin"
+export PATH

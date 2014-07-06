@@ -1,0 +1,51 @@
+# Key names
+left="${terminfo[kcub1]}"
+right="${terminfo[kcuf1]}"
+up="${terminfo[kcuu1]}"
+down="${terminfo[kcud1]}"
+del="${terminfo[kdch1]}"
+pageup="${terminfo[kpp]}"
+pagedn="${terminfo[knp]}"
+f1="${terminfo[kf1]}"
+f2="${terminfo[kf2]}"
+f3="${terminfo[kf3]}"
+f4="${terminfo[kf4]}"
+f5="${terminfo[kf5]}"
+c_left='^[[1;5D'
+c_right='^[[1;5C'
+c_up='^[[1;5A'
+c_down='^[[1;5B'
+c_b='^B'
+
+# Home and end keys
+case "${TERM}" in
+    linux|screen|screen.linux)
+        home="${terminfo[khome]}"
+        end="${terminfo[kend]}"
+        ;;
+    xterm)
+        home="${terminfo[home]}"
+        end="^[[F"
+        ;;
+esac
+
+# Key bindings
+bindkey "${left}"       backward-char
+bindkey "${right}"      forward-char
+bindkey "${up}"         up-history
+bindkey "${down}"       down-history
+bindkey "${home}"       vi-first-non-blank
+bindkey "${end}"        end-of-line
+bindkey "${del}"        delete-char
+bindkey "${pageup}"     history-beginning-search-backward
+bindkey "${pagedn}"     history-beginning-search-forward
+bindkey "${c_left}"     vi-backward-blank-word
+bindkey "${f1}"         vi-backward-blank-word
+bindkey "${c_up}"       history-incremental-search-backward
+bindkey "${f2}"         history-incremental-search-backward
+bindkey "${c_down}"     history-incremental-search-forward
+bindkey "${f3}"         history-incremental-search-forward
+bindkey "${c_right}"    vi-forward-blank-word
+bindkey "${f4}"         vi-forward-blank-word
+bindkey "${f5}"         vi-match-bracket
+bindkey "${c_b}"        vi-match-bracket
