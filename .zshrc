@@ -35,7 +35,7 @@ init_prompt() {
 
 init_prompt
 
-if [ "${TERM}" != 'screen' ]; then
+if [ "${TERM}" != 'screen' ] && tmux -c true; then
     if tmux list-sessions; then
         exec tmux attach-session
     else
